@@ -1,9 +1,13 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {IBoard} from "../../types";
 
 type TBoardsState = {
     modalActive : boolean;
     boardArray : IBoard[];
+}
+
+type TAddBoardAction = {
+    board: IBoard;
 }
 
 
@@ -53,8 +57,13 @@ const boardsSlice = createSlice({
     name : "boards",
     initialState,
     reducers : {
-
+        addBoard: (state, {payload}: PayloadAction<TAddBoardAction>) => {
+            // 내부에서 immer 라이브러리를 사용하고 있어 불변성을 신경쓰지 않아도 된다 하신다.
+            state.boardArray.push(payload.board);
+        }
     }
 });
 
+
+export const {addBoard} = boardsSlice.actions;
 export const boardsReducer = boardsSlice.reducer;

@@ -1,6 +1,6 @@
 import {createGlobalTheme, style} from "@vanilla-extract/css";
 
-const vars = createGlobalTheme(":root",{
+export const vars = createGlobalTheme(":root",{
     color : {
         main : "#ffa726",
         mainDarker: "#f57c00",
